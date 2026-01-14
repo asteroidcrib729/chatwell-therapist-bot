@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker | ChatWell</title>
+    <!--<script src="https://cdn.tailwindcss.com"></script>-->
+    <link href="../static/compiled-tailwind.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bevan&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], display: ['Bevan', 'serif'] },
+                    colors: { brand: { light: '#A7FEDE' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Keeping background animation */
+        body {
+            background-color: #000;
+            overflow-x: hidden;
+        }
+
+        #bg-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #stars,
+        #stars2,
+        #stars3 {
+            position: absolute;
+            inset: 0;
+            background-repeat: repeat;
+            background-size: contain;
+        }
+
+        #stars {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            animation: moveStars 50s linear infinite;
+        }
+
+        #stars2 {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.5;
+            animation: moveStars 100s linear infinite;
+        }
+
+        #stars3 {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            animation: moveStars 150s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white min-h-screen font-sans">
+
+    <nav class="absolute top-0 right-0 p-6 z-50">
+        <ul class="flex space-x-8 text-sm font-medium tracking-wide">
+            <li><a href="{{ url_for('chatbot') }}" class="hover:text-brand-light transition">AI CHATBOT</a></li>
+            <li><a href="{{ url_for('index') }}" class="hover:text-brand-light transition">MOOD TRACKER</a></li>
+        </ul>
+    </nav>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-12 md:py-20">
+
+        <div class="text-center mb-12">
+            <h1 class="font-display text-4xl md:text-5xl mb-2">Track Your Mood</h1>
+            <p class="text-white/60 text-lg">Understand your emotions, one day at a time.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-1">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl sticky top-10">
+                    <h2 class="text-xl font-semibold mb-6 border-b border-white/10 pb-2">New Entry</h2>
+
+                    <form action="/add_mood" method="POST" class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-white/70 mb-2">Current
+                                Mood</label>
+                            <input type="text" id="mood" name="mood" placeholder="e.g. Happy, Anxious, Calm" required
+                                class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-light transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-white/70 mb-2">Notes</label>
+                            <textarea id="note" name="note" rows="4" placeholder="Why do you feel this way?"
+                                class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white resize-none focus:outline-none focus:border-brand-light transition"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-brand-light hover:bg-white text-black font-semibold py-3 rounded-lg shadow-lg transform hover:-translate-y-1 transition duration-200">
+                            Save Entry
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <h2 class="text-xl font-semibold mb-6 flex items-center gap-2">
+                    <span>Recent Entries</span>
+                    <span class="text-xs bg-white/20 px-2 py-1 rounded-full text-white/80">{{ moods|length }}</span>
+                </h2>
+
+                <div class="grid gap-4">
+                    {% if moods %}
+                    {% for entry in moods|reverse %}
+                    <div
+                        class="group bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-5 transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-brand-light font-display text-xl">{{ entry.mood }}</h3>
+                            <span class="text-xs text-white/40">Just now</span>
+                        </div>
+                        <p class="text-white/80 text-sm leading-relaxed">{{ entry.note }}</p>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="text-center py-12 border-2 border-dashed border-white/10 rounded-xl">
+                        <p class="text-white/40 italic">No moods tracked yet. Add your first one!</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="bg-wrap">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+</body>
+
+</html>

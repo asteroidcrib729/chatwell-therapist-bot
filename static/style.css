@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* header */
+
+header {
+padding: 15px 50px 15px 25px;
+    margin: 0 auto !important;
+    justify-content: end;
+    display: flex;
+    position: absolute;
+    width: max-content;
+    z-index: 999;
+    right: 250px;
+
+}
+
+header ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 22px;
+    cursor: pointer !important;
+}
+
+/* ------------------ */
+
+
+h1 {
+    font-family: "Bevan", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2, h3, h4, h5, h6, p, span, a {
+    font-family: "Poppins", serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-conatiner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.logo .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.logo .img {
+    width: 85px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text h1 {
+    margin: 0 !important;
+    font-size: 35px;
+    line-height: 42px;
+}
+
+.text h2 {
+    letter-spacing: 5px;
+    color: #fff;
+    margin: 0 0 0 10px !important;
+    font-size: 18px;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+.chat-container {
+    background: rgb(255 255 255 / 20%);
+    box-shadow: 0 0 10px rgb(255 255 255 / 50%);
+    border-radius: 50px;
+    padding: 40px 30px;
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgb(255 255 255 / 10%);
+
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+
+#chat-box {
+    overflow-y: auto;
+    height: 300px;
+}
+
+.container {
+    border: 1px solid #fff;
+    height: 300px;
+    margin-bottom: 10px;
+    background: rgb(255 255 255 / 70%);
+    border-radius: 30px;
+    padding: 20px 30px;
+}
+
+form#chat-form input, form#chat-form select, form #mood {
+    border: 1px solid #fff;
+    background: rgb(255 255 255 / 70%);
+    border-radius: 30px;
+    padding: 12px 30px;
+    margin-bottom: 0 !important;
+}
+
+form#chat-form input:focus, form#chat-form select:focus {
+    outline: none !important;
+}
+
+#chat-box p {
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    margin-top: 12px !important;
+    line-height: 24px;
+    color: #000;
+    margin-bottom: 0 !important;
+}
+
+form#chat-form label {
+    font-family: "Poppins", serif;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    padding-left: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+input::placeholder, select::placeholder {
+    opacity: 1 !important;
+    color: #00000070;
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+form {
+    display: flex;
+    gap: 20px;
+    padding-top: 10px;
+    flex-wrap: wrap !important;
+}
+
+label {
+    margin: 0 !important;
+    font-weight: bold;
+}
+
+input, select, button {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #A7FEDE;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    margin: 10px auto 0 auto;
+    width: 100%;
+    font-size: 18px;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #A7EBFE;
+}
+
+.feild {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.feild-50 {
+    width: 48%;
+    display: flex;
+    justify-content: unset;
+}
+
+input {
+    margin-top: auto;
+}
+
+
+/* Mobile Resposive */
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .chat-container {
+        max-width: 300px !important;
+        padding: 50px 20px !important;
+        height: max-content !important;
+        margin: 0 auto !important;
+        width: max-content !important;
+        position: relative;
+        z-index: 5;
+    }
+    
+    body {
+        overflow: auto !important;
+        padding: 50px 0 !important;
+    }
+    
+    .text h1 {
+        font-size: 25px;
+    }
+    
+    .text h2 {
+        letter-spacing: 3px !important;
+    }
+    
+    .logo {
+        gap: 15px !important;
+    }
+
+    #chat-box {
+        padding-right: 10px !important;
+    }
+
+    #chat-box p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .feild-50 {
+        width: 100%;
+    }
+
+    div#bg-wrap {
+        overflow: auto !important;
+        height: 1105px;
+        margin-top: -1105px;
+        margin-bottom: 100px;
+    }
+
+    .container {
+        padding: 20px 10px 20px 20px !important;
+    }
+    
+    .main-conatiner {
+        display: initial !important;
+    }
+
+}
+
+/* Mobile Responsive End */
+
+
+/* Background animation css start */
+
+#bg-wrap {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background animation css end */
+
+   /* Star animation CSS */
+   body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#stars, #stars2, #stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: repeat;
+    background-size: contain;
+    animation: moveStars 50s linear infinite;
+}
+
+#stars {
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    z-index: 0;
+}
+
+#stars2 {
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    z-index: 1;
+    opacity: 0.5;
+    animation: moveStars2 100s linear infinite;
+}
+
+#stars3 {
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    z-index: 2;
+    opacity: 0.3;
+    animation: moveStars3 150s linear infinite;
+}
+
+@keyframes moveStars {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes moveStars2 {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes moveStars3 {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+/*Page Loader*/
+
+#load {
+    transition: opacity 0.5s ease-out;
+}
+
+
+body {
+  overflow: hidden;
+}
+
+#load {
+  position:absolute;
+  width:600px;
+  height:36px;
+  left:50%;
+  top:40%;
+  margin-left:-300px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:36px;
+  opacity:0;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color:#ffffff;
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+	35% {
+		left: 41%;
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-moz-transform:rotate(-180deg);
+		-webkit-transform:rotate(-180deg);
+		-o-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-moz-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-moz-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-webkit-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-o-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-o-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+
+/* Additional CSS for Mood Tracker */
+.mood-container {
+    background: rgb(255 255 255 / 20%);
+    box-shadow: 0 0 10px rgb(255 255 255 / 50%);
+    border-radius: 50px;
+    padding: 40px 30px;
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgb(255 255 255 / 10%);
+}
+
+textarea {
+    border: 1px solid #fff;
+    background: rgb(255 255 255 / 70%);
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+    width: 100%;
+    resize: none;
+    height: 100px;
+}
+
+textarea::placeholder {
+    color: #00000070;
+    font-family: "Poppins", serif;
+    font-size: 16px;
+}
+
+textarea:focus {
+    outline: none !important;
+}
+
+.mood-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mood-container .field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto !important;
+    gap: 8px;
+}
+
+.mood-container textarea#note {
+    width: 90%;
+}
+
+.mood-container label {
+    color: #fff !important;
+}
+
+.mood-container h2 {
+    color: #fff;
+}
+
+.mood-container .entries .entry {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.mood-container .entries .entry h3 {
+    margin: 0 !important;
+}
+
+.mood-container .entries .entry p {
+    margin: 0 !important;
+}
+
+.mood-container .entries {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 250px;
+    overflow: auto;
+}

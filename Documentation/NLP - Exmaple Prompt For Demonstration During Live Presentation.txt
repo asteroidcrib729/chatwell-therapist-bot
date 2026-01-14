@@ -1,0 +1,28 @@
+To demonstrate the new Action-Oriented capabilities of your chatbot (where it prescribes a solution immediately instead of just listening), use this example.
+
+Demonstration Scenario: Panic Attack
+
+This query tests if the AI can identify "Panic" from the keywords and immediately prescribe the Box Breathing technique defined in your `knowledge.txt`.
+
+1. Enter this into the Chatbot:
+
+Symptoms: I feel like I can't breathe and my heart is beating very fast.
+Duration: 10 minutes
+Age: 25
+Gender: Female
+
+2. Expected AI Response (New Behavior):
+
+> "I am sorry you are experiencing this panic; you are safe. Since you are showing signs of a panic attack, I want you to try Box Breathing with me right now:
+> 1. Inhale for 4 seconds.
+> 2. Hold for 4 seconds.
+> 3. Exhale for 4 seconds.
+> 4. Hold for 4 seconds.
+> 
+> 
+> Let's do this together until your heart rate slows down."
+
+Why this works:
+
+Old Behavior: "It sounds like you are feeling overwhelmed. Can you tell me more about your heart rate?" (Passive loop).
+New Behavior: The AI sees the context, identifies "Panic", and immediately executes **Instruction #3 (PRESCRIBE)** from your new System Prompt, giving the user the exact tool they need.

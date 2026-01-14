@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Therapist | ChatWell</title>
+    <!--<script src="https://cdn.tailwindcss.com"></script>-->
+    <link href="../static/compiled-tailwind.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bevan&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Bevan', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#A7FEDE',
+                            DEFAULT: '#4ade80', // Greenish accent
+                            dark: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Keep exactly your old star CSS here */
+        body {
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        #bg-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #stars,
+        #stars2,
+        #stars3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-repeat: repeat;
+            background-size: contain;
+        }
+
+        #stars {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            animation: moveStars 50s linear infinite;
+        }
+
+        #stars2 {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.5;
+            animation: moveStars 100s linear infinite;
+        }
+
+        #stars3 {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            animation: moveStars 150s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        /* Custom scrollbar for chat */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="text-white h-screen flex flex-col font-sans">
+
+    <nav class="absolute top-0 right-0 p-6 z-50">
+        <ul class="flex space-x-8 text-sm font-medium tracking-wide">
+            <li><a href="{{ url_for('chatbot') }}" class="hover:text-brand-light transition duration-300">AI CHATBOT</a>
+            </li>
+            <li><a href="{{ url_for('index') }}" class="hover:text-brand-light transition duration-300">MOOD TRACKER</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+
+        <div class="text-center mb-6">
+            <h1 class="font-display text-4xl md:text-5xl tracking-wider mb-2">ChatWell</h1>
+            <p class="text-white/70 text-sm tracking-widest uppercase">Your Personal AI Therapist</p>
+        </div>
+
+        <div
+            class="w-full max-w-2xl bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[70vh]">
+
+            <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar scroll-smooth">
+                <div class="flex flex-col space-y-2">
+                    <div
+                        class="bg-white/10 p-4 rounded-tl-xl rounded-tr-xl rounded-br-xl w-fit max-w-[80%] border border-white/10">
+                        <p class="text-sm leading-relaxed">Welcome to ChatWell! I am here to provide support by
+                            understanding your concerns. Please verify your details below to start.</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="chat-form" class="bg-black/20 p-4 border-t border-white/10">
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                    <input type="number" id="age" placeholder="Age" required
+                        class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-brand-light focus:ring-1 focus:ring-brand-light transition">
+
+                    <select id="sex" required
+                        class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-light [&>option]:text-black">
+                        <option value="">Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <input type="text" id="duration" placeholder="Duration (e.g. 2 days)" required
+                        class="col-span-2 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-brand-light transition">
+                </div>
+
+                <div class="relative">
+                    <input type="text" id="symptoms" placeholder="How are you feeling today?" required
+                        class="w-full bg-white/20 border border-white/20 rounded-full pl-5 pr-12 py-3 text-white placeholder-white/60 focus:outline-none focus:bg-white/25 focus:border-brand-light transition">
+
+                    <button type="submit"
+                        class="absolute right-2 top-1.5 bg-brand-light hover:bg-white text-black rounded-full p-2 transition duration-300 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-5 h-5 transform rotate-90">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="bg-wrap">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#09090b">
+    <title>ChatWell | Chat and mood tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/compiled-tailwind.css') }}?v={{ css_version }}">
+    <script src="{{ url_for('static', path='/script.js') }}?v={{ script_version }}" defer></script>
+</head>
+<body class="min-h-screen bg-zinc-950 font-sans text-zinc-100 antialiased scheme-dark">
+    <div class="mx-auto flex min-h-screen max-w-[1500px] flex-col px-3 sm:px-5 lg:h-dvh lg:px-8">
+        <header class="flex h-16 shrink-0 items-center justify-between gap-4">
+            <a class="flex items-center gap-3 text-lg font-semibold tracking-tight text-zinc-100 no-underline" href="/" aria-label="ChatWell home">
+                <span class="grid size-9 place-items-center rounded-xl bg-emerald-400 text-xl font-bold text-zinc-950" aria-hidden="true">✦</span>
+                <span>ChatWell</span>
+            </a>
+            <span class="hidden text-sm text-zinc-400 sm:block">A space to check in and find a next step</span>
+        </header>
+
+        <main class="grid flex-1 gap-4 pb-4 lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <section class="flex h-[calc(100dvh-5rem)] min-h-[620px] min-w-0 flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 lg:h-auto lg:min-h-0" id="chat" aria-labelledby="chat-title">
+                <header class="flex shrink-0 items-center gap-3 border-b border-zinc-800 px-4 py-4 sm:px-6">
+                    <span class="grid size-10 place-items-center rounded-xl bg-emerald-400/15 text-xl text-emerald-300" aria-hidden="true">✦</span>
+                    <div>
+                        <h1 class="text-base font-semibold text-zinc-100" id="chat-title">Chat with ChatWell</h1>
+                        <p class="text-xs text-zinc-400">AI support grounded in coping techniques</p>
+                    </div>
+                </header>
+
+                <div id="chat-box" class="min-h-0 flex-1 space-y-5 overflow-y-auto bg-zinc-950/40 px-4 py-6 sm:px-8" role="log" aria-live="polite" aria-label="Conversation">
+                    <div class="flex max-w-[90%] items-start gap-3 sm:max-w-[80%]">
+                        <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-emerald-400/15 text-emerald-300" aria-hidden="true">✦</span>
+                        <div class="min-w-0">
+                            <span class="mb-1 block text-xs font-semibold text-zinc-400">ChatWell</span>
+                            <p class="whitespace-pre-wrap break-words rounded-2xl rounded-tl-sm border border-zinc-700 bg-zinc-800 px-4 py-3 text-[15px] leading-7 text-zinc-100">Hi, I’m here to help you think through how you’re feeling. Share what’s going on and I’ll suggest a coping technique.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shrink-0 border-t border-zinc-800 bg-zinc-900 px-4 py-4 sm:px-6">
+                    <form id="chat-form" autocomplete="off">
+                        <details class="mb-3 rounded-xl border border-zinc-800 bg-zinc-950/50 px-3 py-2">
+                            <summary class="cursor-pointer text-xs font-medium text-zinc-300">Add optional context (age, gender, duration)</summary>
+                            <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                                <div class="min-w-0">
+                                    <label class="mb-1 block text-xs font-medium text-zinc-300" for="age">Age</label>
+                                    <input class="h-10 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 text-sm text-zinc-100 outline-none placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20" id="age" name="age" type="number" min="1" max="120" inputmode="numeric" placeholder="Optional">
+                                </div>
+                                <div class="min-w-0">
+                                    <label class="mb-1 block text-xs font-medium text-zinc-300" for="sex">Gender</label>
+                                    <select class="h-10 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 text-sm text-zinc-100 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20" id="sex" name="sex">
+                                        <option value="">Prefer not to say</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2 min-w-0 sm:col-span-1">
+                                    <label class="mb-1 block text-xs font-medium text-zinc-300" for="duration">How long?</label>
+                                    <input class="h-10 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 text-sm text-zinc-100 outline-none placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20" id="duration" name="duration" type="text" placeholder="e.g. a few days">
+                                </div>
+                            </div>
+                        </details>
+                        <div class="flex items-end gap-2 rounded-xl border border-zinc-700 bg-zinc-950/70 p-2 focus-within:border-emerald-400">
+                            <label class="sr-only" for="symptoms">Your message</label>
+                            <textarea class="max-h-36 min-h-12 min-w-0 flex-1 resize-y bg-transparent px-2 py-2 text-sm leading-6 text-zinc-100 outline-none placeholder:text-zinc-400" id="symptoms" name="symptoms" rows="2" maxlength="4000" placeholder="Type how you’re feeling…" required></textarea>
+                            <button class="min-h-11 shrink-0 rounded-lg bg-emerald-400 px-4 text-sm font-semibold text-zinc-950 hover:bg-emerald-300 disabled:cursor-wait disabled:opacity-60" id="send-button" type="submit">Send <span aria-hidden="true">↑</span></button>
+                        </div>
+                    </form>
+                    <p class="mt-3 text-[11px] leading-4 text-zinc-400">ChatWell is a support prototype, not emergency or clinical care. Messages are sent to Groq and saved locally.</p>
+                </div>
+            </section>
+
+            <aside class="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900" id="moods" aria-labelledby="mood-title">
+                <header class="shrink-0 border-b border-zinc-800 px-5 py-5">
+                    <h2 class="text-base font-semibold text-zinc-100" id="mood-title">Mood tracker</h2>
+                    <p class="mt-1 text-xs text-zinc-400">Make a quick note for yourself.</p>
+                </header>
+
+                <div class="overflow-y-auto p-5">
+                    <form action="/add_mood" method="post" class="space-y-4">
+                        <div>
+                            <label class="mb-2 block text-xs font-medium text-zinc-300" for="mood">How are you feeling?</label>
+                            <input class="h-11 w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 text-sm text-zinc-100 outline-none placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20" id="mood" name="mood" type="text" maxlength="100" placeholder="e.g. Calm, anxious, hopeful" required>
+                        </div>
+                        <div>
+                            <label class="mb-2 block text-xs font-medium text-zinc-300" for="note">A note about today <span class="font-normal text-zinc-400">optional</span></label>
+                            <textarea class="min-h-24 w-full resize-y rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm leading-6 text-zinc-100 outline-none placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20" id="note" name="note" rows="3" maxlength="2000" placeholder="What’s behind that feeling?"></textarea>
+                        </div>
+                        <button type="submit" class="min-h-11 w-full rounded-lg bg-emerald-400 px-4 text-sm font-semibold text-zinc-950 hover:bg-emerald-300">Save mood</button>
+                    </form>
+
+                    <div class="mb-3 mt-7 flex items-center gap-2">
+                        <h3 class="text-sm font-semibold text-zinc-100">Recent entries</h3>
+                        <span class="rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-300">{{ moods|length }}</span>
+                    </div>
+                    {% if moods %}
+                    <ol class="space-y-2">
+                        {% for entry in moods %}
+                        <li class="rounded-xl border border-zinc-800 bg-zinc-950/60 p-3">
+                            <div class="flex items-baseline justify-between gap-2">
+                                <strong class="break-words text-sm text-emerald-300">{{ entry.mood }}</strong>
+                                {% if entry.date %}<time class="shrink-0 text-[10px] text-zinc-400">{{ entry.date }}</time>{% endif %}
+                            </div>
+                            {% if entry.note %}<p class="mt-2 whitespace-pre-wrap break-words text-xs leading-5 text-zinc-300">{{ entry.note }}</p>{% endif %}
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    {% else %}
+                    <p class="rounded-xl border border-dashed border-zinc-700 px-4 py-6 text-center text-xs text-zinc-400">No entries yet. Save a mood to see it here.</p>
+                    {% endif %}
+                </div>
+            </aside>
+        </main>
+    </div>
+</body>
+</html>

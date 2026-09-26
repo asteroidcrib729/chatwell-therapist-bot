@@ -1,0 +1,37 @@
+[project]
+name = "chatwell-therapist-bot"
+version = "0.1.0"
+description = "Retrieval-augmented mental health support prototype with Groq API answers"
+readme = "README.md"
+requires-python = ">=3.14.2,<3.15"
+license = "ISC"
+authors = [{ name = "Faraz Hussain" }]
+dependencies = [
+    "chromadb",
+    "fastapi",
+    "jinja2",
+    "langchain-chroma",
+    "langchain-core",
+    "langchain-groq>=1.1.3",
+    "langchain-huggingface",
+    "langchain-text-splitters",
+    "python-dotenv>=1.2.3",
+    "python-multipart",
+    "sentence-transformers",
+    "uvicorn",
+]
+
+[dependency-groups]
+dev = ["httpx", "notebook", "pytest"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.pyrefly]
+project-includes = [
+    "**/*.py*",
+    "**/*.ipynb",
+]
